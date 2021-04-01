@@ -1,26 +1,22 @@
 #game 
   display: none
-  grid-template-columns: repeat(7, 100px)
-  grid-template-rows: repeat(6, 100px)
-  width: 700px
-  height: 600px
+  grid-template-columns: repeat($cols, $width)
+  grid-template-rows: repeat($rows, $height)
+  width: $cols * $width
+  height: $rows * $height
   border: 1px solid black
 
 .cell 
   display: inline-grid
   border: 1px solid black
-  height: 100px
-  width: 100px
+  height: $height
+  width: $width
 
 div.red 
-  background-image: url("../images/logo-feri-rdec.png")
-  background-repeat: no-repeat
-  background-size: 100px 100px
+  background: red
 
 div.yellow 
-  background-image: url("../images/logo-feri-rumen.png")
-  background-repeat: no-repeat
-  background-size: 100px 100px
+  background: yellow
 
 .turn 
   font-size: 4rem

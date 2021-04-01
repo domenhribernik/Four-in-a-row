@@ -73,37 +73,39 @@ var placeToken = (e) => {
   let block = e.target
   let col = parseInt(block.attributes.col.value)
   let row = parseInt(block.attributes.row.value)
-  turn === 1 
-  ? (
-    block.classList.add("yellow"),
-    block.classList.remove("empty"),
-    gameArr[row][col] = turn,
-    turn = 2
-    )
-  : (
-    block.classList.add("red"),
-    block.classList.remove("empty"),
-    gameArr[row][col] = turn,
-    turn = 1
-    ) 
-  let i1 = setInterval(() => {
-    if (row < rowMax) {
-      if (gameArr[row+1][col] === 0) {
-        gameArr[row][col] = 0
-        row += 1;
-        gameArr[row][col] = turn === 1 ? 2 : 1
-        updateGame()
-        console.log(row);
+  if (!block.classList.contains("yellow", "red")) { //ERROR - whole block has event listener
+    turn === 1 
+    ? (
+      block.classList.add("yellow"),
+      block.classList.remove("empty"),
+      gameArr[row][col] = turn,
+      turn = 2
+      )
+    : (
+      block.classList.add("red"),
+      block.classList.remove("empty"),
+      gameArr[row][col] = turn,
+      turn = 1
+      ) 
+    let i1 = setInterval(() => {
+      if (row < rowMax) {
+        if (gameArr[row+1][col] === 0) {
+          gameArr[row][col] = 0
+          row += 1;
+          gameArr[row][col] = turn === 1 ? 2 : 1
+          updateGame()
+          console.log(row);
+        }
+        else if (gameArr[row+1][col] !== 0) {
+          clearInterval(i1)
+          horCheck()
+          verCheck()
+          digCheck()
+          updateScore()
+        }
       }
-      else if (gameArr[row+1][col] !== 0) {
-        clearInterval(i1)
-        horCheck()
-        verCheck()
-        digCheck()
-        updateScore()
-      }
-    }
-  }, 100)
+    }, 100)
+  }
 }
 
 createGameArr()

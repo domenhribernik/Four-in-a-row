@@ -38,7 +38,6 @@ input[type=button] {
   text-align: center;
   color: mediumturquoise;
   font-weight: bold;
-  text-shadow: 0px 0px 5px black;
   font-size: 5rem;
   animation-name: naslov;
   animation: naslov 1.5s linear infinite; }
@@ -66,14 +65,10 @@ input[type=button] {
   width: 100px; }
 
 div.red {
-  background-image: url("../images/logo-feri-rdec.png");
-  background-repeat: no-repeat;
-  background-size: 100px 100px; }
+  background: red; }
 
 div.yellow {
-  background-image: url("../images/logo-feri-rumen.png");
-  background-repeat: no-repeat;
-  background-size: 100px 100px; }
+  background: yellow; }
 
 .turn {
   font-size: 4rem;

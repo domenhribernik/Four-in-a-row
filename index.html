@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Štiri v vrsto</title>
+</head>
+<body>
+  <div class="container">
+    <h1 class="naslov">Štiri v vrsto</h1>
+    <div class="left">
+      <table>
+        <tr>
+          <td>Igralec 1</td>
+          <td><input type="text" value="a" id="player1" ></td>
+          <td><img src="images/logo-feri-rumen.png" alt="zeton 1"></td>
+        </tr>
+        <tr>
+          <td>Igralec 2</td>
+          <td><input  type="text" value="b" id="player2"></td>
+          <td><img src="images/logo-feri-rdec.png" alt="zeton 2"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="button" value="Nova igra" onclick="showGame()"></td>
+          <td></td>
+        </tr>
+      </table>
+      <div class="turn">
+        <div>Na potezi: </div>
+        <div id="player"></div>
+      </div>
+    </div>
+    <div class="right">
+      <div id="game"></div>
+    </div>
+  </div>
+</body>
+<script src="js/script.js"></script>
+</html>

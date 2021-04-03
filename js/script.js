@@ -73,7 +73,7 @@ var placeToken = (e) => {
   let block = e.target
   let col = parseInt(block.attributes.col.value)
   let row = parseInt(block.attributes.row.value)
-  if (!block.classList.contains("yellow", "red")) { //ERROR - whole block has event listener
+  if (gameArr[row][col] == 0) { //ERROR - whole block has event listener
     turn === 1 
     ? (
       block.classList.add("yellow"),

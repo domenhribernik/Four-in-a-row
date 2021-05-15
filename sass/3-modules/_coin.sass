@@ -1,10 +1,11 @@
-.coin
-  height: $height
-  width: $width
-  display: inline-block
-  border: $basic-border
+.red, .yellow 
+  display: inline-grid
+  height: $height - $size-reduction
+  width: $width - $size-reduction
   border-radius: 50%
-
+  border: $basic-border
+  margin: ($size-reduction / 2) 0 0 ($size-reduction / 2)
+  
 .red 
   background: red
 

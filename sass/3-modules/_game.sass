@@ -1,16 +1,40 @@
-#game 
-  display: none
+#game-display
+  display: grid
+  position: relative
   grid-template-columns: repeat($cols, $width)
   grid-template-rows: repeat($rows, $height)
-  width: $cols * $width
-  height: $rows * $height
+  width: $cols*$width
+  height: $rows*$height
   border: $basic-border
 
-.cell 
-  display: inline-grid
+.display-cell
   border: $basic-border
   height: $height
   width: $width
+  
+#game 
+  display: grid
+  transform: translateY(-$height*$rows)
+  grid-template-columns: repeat($cols, $width)
+  grid-template-rows: repeat($rows, $height)
+  z-index: 10
+
+.first-row
+  display: inline-grid
+
+.first-red:hover, .first-yellow:hover
+  height: $height - $size-reduction
+  width: $width - $size-reduction
+  border-radius: 50%
+  margin: ($size-reduction / 2) 0 0 ($size-reduction / 2)
+  border: $basic-border
+  
+.first-red:hover
+  background: red
+  
+
+.first-yellow:hover
+  background: yellow
 
 .turn 
   font-size: 4rem

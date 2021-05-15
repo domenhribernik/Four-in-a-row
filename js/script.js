@@ -1,10 +1,11 @@
 var turn = 0
 var colMax = 7
-var rowMax = 6
+var rowMax = 6 + 1
 var gameArr = []
 var player = document.getElementById("player")
 console.log(player)
 var game = document.getElementById("game")
+var display = document.getElementById("game-display")
 var p1 = document.getElementById("player1")
 var p2 = document.getElementById("player2")
 
@@ -17,17 +18,34 @@ var rndPlayer = () => {
   turn = Math.round(Math.random()) + 1
   updateScore()
 }
+var createDisplay = () => {
+  for (let i = 0; i < rowMax; i++) {
+    for (let j = 0; j < colMax; j++) {
+      let cell = document.createElement("div")
+      cell.classList.add("display-cell")
+      display.appendChild(cell)
+    }
+  }
+  game = document.createElement("div")
+  game.id = "game"
+  display.append(game)
+}
+
 var createGameArr = () => {
   gameArr = []
   for (let i = 0; i < rowMax; i++) {
     gameArr.push([])
     for (let j = 0; j < colMax; j++) {
       let cell = document.createElement("div")
-      cell.classList.add("cell")
+      i == 0 ? cell.classList.add("first-row") : null 
+      console.log(turn.toString());
+      turn == 1 && i == 0 ? cell.classList.add("first-yellow") : turn == 2 && i == 0 ? cell.classList.add("first-red") : null
       cell.setAttribute("row", i)
       cell.setAttribute("col", j)
+      
       game.appendChild(cell)
       gameArr[i].push(0)
+      
     }
   }
   game.addEventListener("click", placeToken)
@@ -38,7 +56,8 @@ var updateGame = () => {
     gameArr.push([])
     for (let j = 0; j < colMax; j++) {
       let cell = document.createElement("div")
-      cell.classList.add("cell")
+      i == 0 ? cell.classList.add("first-row") : null
+      turn == 1 && i == 0 ? cell.classList.add("first-yellow") : i == 0 && turn == 2 ? cell.classList.add("first-red") : null
       switch (gameArr[i][j]) {
         case 1:
           cell.classList.add("yellow")
@@ -61,7 +80,8 @@ var showGame = () => {
     restartGame()
   }
   rndPlayer()
-  game.style.display = "grid"
+  createDisplay()
+  createGameArr()
   p1.disabled = true
   p2.disabled = true
 }
@@ -107,8 +127,6 @@ var placeToken = (e) => {
     }, 100)
   }
 }
-
-createGameArr()
 
 var horCheck = () => {
   let horY = 0

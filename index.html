@@ -10,26 +10,26 @@
 <body>
   <div class="container">
     <div class="left">
-      <h1 class="naslov">F<span class="yellow-text">o</span>ur in a r<span class="red-text">o</span>w</h1>
+      <h1 class="title">F<span class="yellow-text">o</span>ur in a r<span class="red-text">o</span>w</h1>
       <table>
         <tr>
           <td>Player 1</td>
           <td><input type="text" value="player1" id="player1" ></td>
-          <td><div class="coin yellow"></div></td>
+          <td><div class="coin yellow shaded-coin"></div></td>
         </tr>
         <tr>
           <td>Player 2</td>
           <td><input  type="text" value="player2" id="player2"></td>
-          <td><div class="coin red"></div></td>
+          <td><div class="coin red shaded-coin"></div></td>
         </tr>
         <tr>
           <td></td>
-          <td><input type="button" value="Nova igra" onclick="showGame()"></td>
+          <td><input type="button" value="New Game" onclick="showGame()"></td>
           <td></td>
         </tr>
       </table>
       <div class="turn">
-        <div>Na potezi: </div>
+        <div id="turn-text">Next: </div>
         <div id="player"></div>
       </div>
     </div>

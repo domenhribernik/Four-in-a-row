@@ -29,6 +29,7 @@ var createDisplay = () => {
   game = document.createElement("div")
   game.id = "game"
   display.append(game)
+  document.getElementById("border-fix").style.display = "inline-block"
 }
 
 var createGameArr = () => {

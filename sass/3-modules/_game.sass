@@ -1,4 +1,4 @@
-#game-display
+#game-display 
   display: grid
   position: relative
   grid-template-columns: repeat($cols, $width)
@@ -10,14 +10,65 @@
 .display-cell
   border: $basic-border
   height: $height
-  width: $width
+  width: $width(-1px)
+  
+
+.display-cell:nth-child(n+8)
+  background: blue
+  box-shadow: $outer-border-width $outer-border-width $outer-border-color
+
+.display-cell::before
+  position: absolute
+  display: block
+  content: ""
+  height: 0
+  width: 0
+  border: solid $outer-border-width transparent
+  border-left: solid $outer-border-width $outer-border-color
+  border-right-width: 0px
+  background: none
+  top: 100px
+  right: -$outer-border-width
+  z-index: 200
+
+.display-cell::after 
+    position: absolute
+    display: block
+    content: ""
+    height: 0
+    width: 0
+    border: solid $outer-border-width transparent
+    border-top: solid $outer-border-width $outer-border-color
+    border-bottom-width: 0px
+    background: none
+    left: 1px
+    bottom: -$outer-border-width
+    transform: translateY(+2px)
+
+#border-fix
+  display: inline-block
+  position: relative
+  top: -24px
+  left: 50px
+  height: $outer-border-width
+  background: $outer-border-color
+  width: $cols*$width/1.1
+  z-index: 1
+  margin: none
+  padding: none
   
 #game 
+  box-sizing: border-box
   display: grid
   transform: translateY(-$height*$rows)
   grid-template-columns: repeat($cols, $width)
   grid-template-rows: repeat($rows, $height)
   z-index: 10
+  div:not(.first-row,.yellow,.red)
+    background: white
+    border-radius: 50%
+    margin: ($size-reduction / 2 )
+    border: $basic-border
 
 .first-row
   display: inline-grid

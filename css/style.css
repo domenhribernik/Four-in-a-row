@@ -50,6 +50,9 @@ input[type=button] {
 .red-text {
   color: red; }
 
+.slider {
+  display: block; }
+
 /* MODULES */
 #game-display {
   display: grid;
@@ -65,8 +68,7 @@ input[type=button] {
   width: 100px -1px; }
 
 .display-cell:nth-child(n+8) {
-  background: blue;
-  box-shadow: 10px 10px darkblue; }
+  background: #7968ee; }
 
 .display-cell::before {
   position: absolute;
@@ -74,13 +76,12 @@ input[type=button] {
   content: "";
   height: 0;
   width: 0;
-  border: solid 10px transparent;
-  border-left: solid 10px darkblue;
+  border: solid 20px transparent;
+  border-left: solid 20px #473d8a;
   border-right-width: 0px;
   background: none;
-  top: 100px;
-  right: -10px;
-  z-index: 200; }
+  top: 660px;
+  right: -20px; }
 
 .display-cell::after {
   position: absolute;
@@ -88,22 +89,21 @@ input[type=button] {
   content: "";
   height: 0;
   width: 0;
-  border: solid 10px transparent;
-  border-top: solid 10px darkblue;
-  border-bottom-width: 0px;
+  border: solid 20px transparent;
+  border-bottom: solid 20px #6a5bcd;
+  border-top-width: 0px;
   background: none;
   left: 0px;
-  bottom: -10px; }
+  top: 80px; }
 
-#border-fix {
+#outer-border {
   display: none;
-  position: relative;
-  top: -25px;
-  left: 50px;
-  height: 10px;
-  background: darkblue;
-  width: 636.3636363636px;
-  z-index: 1;
+  position: absolute;
+  transform: translate(20px, -620px);
+  height: 600px;
+  background: linear-gradient(-40.3deg, #473d8a 50%, #6a5bcd 50%);
+  width: 700px;
+  z-index: -10;
   margin: none;
   padding: none; }
 
@@ -142,7 +142,8 @@ input[type=button] {
   margin-top: 30px;
   position: relative;
   left: 50%;
-  transform: translateX(-50%); }
+  transform: translateX(-50%);
+  height: 100px; }
 
 .red, .yellow {
   display: inline-grid;

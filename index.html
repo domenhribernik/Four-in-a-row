@@ -32,10 +32,13 @@
         <div id="turn-text">Next: </div>
         <div id="player"></div>
       </div>
+      <div class="slider">
+        <input type="range" min="1" max="360" value="248" class="slider" id="myRange" onchange="setColor(this)">
+      </div>
     </div>
     <div class="right">
       <div id="game-display"></div>
-      <div id="border-fix"></div>
+      <div id="outer-border"></div>
     </div>
   </div>
 </body>

@@ -8,6 +8,7 @@ var game = document.getElementById("game")
 var display = document.getElementById("game-display")
 var p1 = document.getElementById("player1")
 var p2 = document.getElementById("player2")
+var gameOverBool = false
 
 var updateScore = () => {
   turn === 1 
@@ -39,8 +40,7 @@ var createGameArr = () => {
     for (let j = 0; j < colMax; j++) {
       let cell = document.createElement("div")
       i == 0 ? cell.classList.add("first-row") : null 
-      console.log(turn.toString());
-      turn == 1 && i == 0 ? cell.classList.add("first-yellow") : turn == 2 && i == 0 ? cell.classList.add("first-red") : null
+      turn == 1 ? cell.classList.add("yellow-turn") : turn == 2 ? cell.classList.add("red-turn") : null
       cell.setAttribute("row", i)
       cell.setAttribute("col", j)
       
@@ -58,7 +58,7 @@ var updateGame = () => {
     for (let j = 0; j < colMax; j++) {
       let cell = document.createElement("div")
       i == 0 ? cell.classList.add("first-row") : null
-      turn == 1 && i == 0 ? cell.classList.add("first-yellow") : i == 0 && turn == 2 ? cell.classList.add("first-red") : null
+      turn == 1 && gameOverBool !== true ? cell.classList.add("yellow-turn") : turn == 2  && gameOverBool !== true ? cell.classList.add("red-turn") : null
       switch (gameArr[i][j]) {
         case 1:
           cell.classList.add("yellow")
@@ -100,13 +100,15 @@ var placeToken = (e) => {
       block.classList.add("yellow"),
       block.classList.remove("empty"),
       gameArr[row][col] = turn,
-      turn = 2
+      turn = 2,
+      updateGame()
       )
     : (
       block.classList.add("red"),
       block.classList.remove("empty"),
       gameArr[row][col] = turn,
-      turn = 1
+      turn = 1,
+      updateGame()
       ) 
     let i1 = setInterval(() => {
       if (row < rowMax) {
@@ -129,6 +131,13 @@ var placeToken = (e) => {
   }
 }
 
+var gameOver = p => {
+  alert(`${p} is the winner!`)
+  game.removeEventListener("click", placeToken)
+  gameOverBool = true
+  updateGame()
+}
+
 var horCheck = () => {
   let horY = 0
   let horR = 0
@@ -147,13 +156,11 @@ var horCheck = () => {
         horY = 0
       }
       if (horY === 4) {
-        alert("player1 win")
-        game.removeEventListener("click", placeToken)
+        gameOver("player1")
         break
       }
       else if (horR === 4) {
-        alert("player2 win")
-        game.removeEventListener("click", placeToken)
+        gameOver("player2")
         break
       }
     }
@@ -180,13 +187,11 @@ var verCheck = () => {
         verR = 0
       }
       if (verY === 4) {
-        alert("player1 win")
-        game.removeEventListener("click", placeToken)
+        gameOver("player1")
         break
       }
       else if (verR === 4) {
-        alert("player2 win")
-        game.removeEventListener("click", placeToken)
+        gameOver("player2")
         break
       }
     }
@@ -202,25 +207,21 @@ var digCheck = () => {
     for (let j = 0; j < colMax; j++) {
       if (i >= 3 && j >= 3) {
         if (gameArr[i][j] === 1 && gameArr[i-1][j-1] === 1 && gameArr[i-2][j-2] === 1 && gameArr[i-3][j-3] === 1) {
-          alert("player1 win")
-          game.removeEventListener("click", placeToken)
+          gameOver("player1")
           break
         }
         else if (gameArr[i][j] === 2 && gameArr[i-1][j-1] === 2 && gameArr[i-2][j-2] === 2 && gameArr[i-3][j-3] === 2) {
-          alert("player2 win")
-          game.removeEventListener("click", placeToken)
+          gameOver("player2")
           break
         }
       }
       if (i >= 3 && j <= colMax-2) {
         if (gameArr[i][j] === 1 && gameArr[i-1][j+1] === 1 && gameArr[i-2][j+2] === 1 && gameArr[i-3][j+3] === 1) {
-          alert("player1 win")
-          game.removeEventListener("click", placeToken)
+          gameOver("player1")
           break
         }
         else if (gameArr[i][j] === 2 && gameArr[i-1][j+1] === 2 && gameArr[i-2][j+2] === 2 && gameArr[i-3][j+3] === 2) {
-          alert("player2 win")
-          game.removeEventListener("click", placeToken)
+          gameOver("player2")
           break
         }
       }
@@ -231,7 +232,7 @@ var digCheck = () => {
 }
 
 var setColor = e => {
-  document.getElementById("outer-border").style.background = `linear-gradient(-40.3deg, hsl( ${e.value}, 39%, 39%) 50%, hsl( ${e.value}, 53%, 58%) 50%)`
+  document.getElementById("outer-border").style.background = `linear-gradient(-40.4deg, hsl( ${e.value}, 39%, 39%) 50%, hsl( ${e.value}, 53%, 58%) 50%)`
   document.querySelectorAll("#game-display > div.display-cell:nth-child(n+8)").forEach(el => el.style.background = `hsl( ${e.value}, 80%, 67%)`)
   //browser.tabs.executeScript("return window.getComputedStyle(document.querySelector('.display-cell'), '::after').getPropertyValue('border-bottom-color')").toEqual("red")
 }

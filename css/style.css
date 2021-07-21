@@ -101,7 +101,7 @@ input[type=button] {
   position: absolute;
   transform: translate(20px, -620px);
   height: 600px;
-  background: linear-gradient(-40.3deg, #473d8a 50%, #6a5bcd 50%);
+  background: linear-gradient(-40.4deg, #473d8a 50%, #6a5bcd 50%);
   width: 700px;
   z-index: -10;
   margin: none;
@@ -121,21 +121,41 @@ input[type=button] {
     border: 1px solid black; }
 
 .first-row {
-  display: inline-grid; }
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  margin: 5px 0 0 5px;
+  margin-bottom: 40px;
+  border: 1px solid black;
+  border-color: transparent;
+  transform: translate(5px, -30px); }
 
-.first-red:hover, .first-yellow:hover {
+.first-row::before {
+  position: fixed;
+  display: block;
+  content: "";
+  background: white;
+  border: 1px solid black;
+  height: 6.6666666667px;
+  width: 76.9230769231px;
+  top: 84.6153846154px;
+  transform: translate(6px, 25px) skew(-48deg);
+  z-index: -10; }
+
+.red-turn:hover, .yellow-turn:hover {
   height: 90px;
   width: 90px;
   border-radius: 50%;
   margin: 5px 0 0 5px;
   border: 1px solid black;
-  box-shadow: inset 0 0 7px 0 black; }
+  box-shadow: inset 0 0 7px 0 black;
+  margin-bottom: 40px; }
 
-.first-red:hover {
-  background: red; }
+.red-turn:not(.red, .yellow):hover {
+  background: red !important; }
 
-.first-yellow:hover {
-  background: yellow; }
+.yellow-turn:not(.red, .yellow):hover {
+  background: yellow !important; }
 
 .turn {
   font-size: 4rem;

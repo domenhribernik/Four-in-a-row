@@ -46,7 +46,7 @@
   position: absolute
   transform: translate($outer-border-width, -($rows - 1)*$height - $outer-border-width)
   height: ($rows - 1)*$height
-  background: linear-gradient(-40.3deg, $outer-border-color1 50%, $outer-border-color2 50%)//$outer-border-color
+  background: linear-gradient(-40.4deg, $outer-border-color1 50%, $outer-border-color2 50%)//$outer-border-color
   width: $cols*$width
   z-index: -10
   margin: none
@@ -66,21 +66,41 @@
     border: $basic-border
 
 .first-row
-  display: inline-grid
+  height: $height - $size-reduction 
+  width: $width - $size-reduction
+  border-radius: 50%
+  margin: ($size-reduction / 2) 0 0 ($size-reduction / 2)
+  margin-bottom: $outer-border-width*2
+  border: $basic-border
+  border-color: transparent
+  transform: translate(5px, -30px)
 
-.first-red:hover, .first-yellow:hover
+.first-row::before
+  position: fixed
+  display: block
+  content: ""
+  background: white
+  border: $basic-border
+  height: $height/15
+  width: $width /1.3
+  top: $height - $outer-border-width/1.3
+  transform: translate(6px, 25px) skew(-48deg)
+  z-index: -10
+
+.red-turn:hover, .yellow-turn:hover
   height: $height - $size-reduction
   width: $width - $size-reduction
   border-radius: 50%
   margin: ($size-reduction / 2) 0 0 ($size-reduction / 2)
   border: $basic-border
   box-shadow: $inside-coin-shadow
+  margin-bottom: $outer-border-width*2
 
-.first-red:hover
-  background: red
+.red-turn:not(.red, .yellow):hover
+  background: red!important
   
-.first-yellow:hover
-  background: yellow
+.yellow-turn:not(.red, .yellow):hover
+  background: yellow!important
 
 .turn 
   font-size: 4rem

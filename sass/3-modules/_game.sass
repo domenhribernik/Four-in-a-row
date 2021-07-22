@@ -5,17 +5,15 @@
   grid-template-rows: repeat($rows, $height)
   width: $cols*$width
   height: $rows*$height
-  border: $basic-border
+  //border: $basic-border
 
 .display-cell
-  border: $basic-border
+  border: none
   height: $height
   width: $width(-1px)
-  
 
 .display-cell:nth-child(n+8)
-  background: blue
-  box-shadow: $outer-border-width $outer-border-width $outer-border-color
+  background: $outer-border-color3
 
 .display-cell::before
   position: absolute
@@ -24,36 +22,33 @@
   height: 0
   width: 0
   border: solid $outer-border-width transparent
-  border-left: solid $outer-border-width $outer-border-color
+  border-left: solid $outer-border-width $outer-border-color1
   border-right-width: 0px
   background: none
-  top: 100px
+  top: $rows*$height - $outer-border-width*2
   right: -$outer-border-width
-  z-index: 200
 
 .display-cell::after 
-    position: absolute
-    display: block
-    content: ""
-    height: 0
-    width: 0
-    border: solid $outer-border-width transparent
-    border-top: solid $outer-border-width $outer-border-color
-    border-bottom-width: 0px
-    background: none
-    left: 1px
-    bottom: -$outer-border-width
-    transform: translateY(+2px)
+  position: absolute
+  display: block
+  content: ""
+  height: 0
+  width: 0
+  border: solid $outer-border-width transparent
+  border-bottom: solid $outer-border-width $outer-border-color2
+  border-top-width: 0px
+  background: none
+  left: 0px
+  top: $height - $outer-border-width
 
-#border-fix
-  display: inline-block
-  position: relative
-  top: -24px
-  left: 50px
-  height: $outer-border-width
-  background: $outer-border-color
-  width: $cols*$width/1.1
-  z-index: 1
+#outer-border
+  display: none
+  position: absolute
+  transform: translate($outer-border-width, -($rows - 1)*$height - $outer-border-width)
+  height: ($rows - 1)*$height
+  background: linear-gradient(-40.4deg, $outer-border-color1 50%, $outer-border-color2 50%)//$outer-border-color
+  width: $cols*$width
+  z-index: -10
   margin: none
   padding: none
   
@@ -71,22 +66,49 @@
     border: $basic-border
 
 .first-row
-  display: inline-grid
+  height: $height - $size-reduction 
+  width: $width - $size-reduction
+  border-radius: 50%
+  margin: ($size-reduction / 2) 0 0 ($size-reduction / 2)
+  margin-bottom: $outer-border-width*2
+  border: $basic-border
+  border-color: transparent
+  transform: translate(5px, -30px)
 
-.first-red:hover, .first-yellow:hover
+.first-row::before
+  position: fixed
+  display: block
+  content: ""
+  background: white
+  border: $basic-border
+  height: $height/15
+  width: $width /1.3
+  top: $height - $outer-border-width/1.3
+  transform: translate(6px, 25px) skew(-48deg)
+  z-index: -10
+
+.red-turn:hover, .yellow-turn:hover
   height: $height - $size-reduction
   width: $width - $size-reduction
   border-radius: 50%
   margin: ($size-reduction / 2) 0 0 ($size-reduction / 2)
   border: $basic-border
+<<<<<<< HEAD
   box-shadow: $inner-shadow-coin
   
 .first-red:hover
   background: red
   
+=======
+  box-shadow: $inside-coin-shadow
+  margin-bottom: $outer-border-width*2
+>>>>>>> f3653c325afe231a7a15adfc316ccbb8ad18f2d7
 
-.first-yellow:hover
-  background: yellow
+.red-turn:not(.red, .yellow):hover
+  background: red!important
+  
+.yellow-turn:not(.red, .yellow):hover
+  background: yellow!important
 
 .turn 
   font-size: 4rem
@@ -94,3 +116,4 @@
   position: relative
   left: 50%
   transform: translateX(-50%)
+  height: 100px

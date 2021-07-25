@@ -31,6 +31,8 @@ var createDisplay = () => {
   game.id = "game"
   display.append(game)
   document.getElementById("outer-border").style.display = "inline-block"
+  document.querySelector(".top-left-edge").style.display = "inline-block"
+  document.querySelector(".bottom-right-edge").style.display = "inline-block"
 }
 
 var createGameArr = () => {
@@ -234,5 +236,6 @@ var digCheck = () => {
 var setColor = e => {
   document.getElementById("outer-border").style.background = `linear-gradient(-40.4deg, hsl( ${e.value}, 39%, 39%) 50%, hsl( ${e.value}, 53%, 58%) 50%)`
   document.querySelectorAll("#game-display > div.display-cell:nth-child(n+8)").forEach(el => el.style.background = `hsl( ${e.value}, 80%, 67%)`)
-  //browser.tabs.executeScript("return window.getComputedStyle(document.querySelector('.display-cell'), '::after').getPropertyValue('border-bottom-color')").toEqual("red")
+  document.querySelector(".top-left-edge").style.borderBottom = `20px solid hsl( ${e.value}, 53%, 58%)`
+  document.querySelector(".bottom-right-edge").style.borderLeft = `20px solid hsl( ${e.value}, 39%, 39%)`
 }

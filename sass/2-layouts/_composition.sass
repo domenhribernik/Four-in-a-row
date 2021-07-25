@@ -1,0 +1,57 @@
+.right, .left
+  max-height: $height*$rows
+  padding-top: 100px
+
+#align-game
+  position: relative
+  left: 50%
+  transform: translateX(-50%)
+
+.bottom-right-edge 
+  position: absolute
+  display: none
+  height: 0
+  width: 0
+  border: solid $outer-border-width transparent
+  border-left: solid $outer-border-width $outer-border-color1
+  border-right-width: 0px
+  background: none
+  top: $height*$rows - $outer-border-width*2
+  left: $width*$cols
+  z-index: 1000
+
+
+.top-left-edge
+  position: absolute
+  display: none
+  height: 0
+  width: 0
+  border: solid $outer-border-width transparent
+  border-bottom: solid $outer-border-width $outer-border-color2
+  border-top-width: 0px
+  background: none
+  left: 0px
+  top: $height - $outer-border-width
+
+
+
+
+
+
+
+
+
+
+
+.left
+  border: $basic-border
+
+
+
+.turn 
+  font-size: 4rem
+  margin-top: 30px
+  position: relative
+  left: 50%
+  transform: translateX(-50%)
+  height: 100px

@@ -3,7 +3,8 @@ body {
   margin: none;
   padding: none;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 2rem; }
+  font-size: 2rem;
+  overflow: hidden; }
 
 div {
   display: inline-block; }
@@ -53,6 +54,51 @@ input[type=button] {
 .slider {
   display: block; }
 
+.right, .left {
+  max-height: 700px;
+  padding-top: 100px; }
+
+#align-game {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%); }
+
+.bottom-right-edge {
+  position: absolute;
+  display: none;
+  height: 0;
+  width: 0;
+  border: solid 20px transparent;
+  border-left: solid 20px #473d8a;
+  border-right-width: 0px;
+  background: none;
+  top: 660px;
+  left: 700px;
+  z-index: 1000; }
+
+.top-left-edge {
+  position: absolute;
+  display: none;
+  height: 0;
+  width: 0;
+  border: solid 20px transparent;
+  border-bottom: solid 20px #6a5bcd;
+  border-top-width: 0px;
+  background: none;
+  left: 0px;
+  top: 80px; }
+
+.left {
+  border: 1px solid black; }
+
+.turn {
+  font-size: 4rem;
+  margin-top: 30px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100px; }
+
 /* MODULES */
 #game-display {
   display: grid;
@@ -70,36 +116,11 @@ input[type=button] {
 .display-cell:nth-child(n+8) {
   background: #7968ee; }
 
-.display-cell::before {
-  position: absolute;
-  display: block;
-  content: "";
-  height: 0;
-  width: 0;
-  border: solid 20px transparent;
-  border-left: solid 20px #473d8a;
-  border-right-width: 0px;
-  background: none;
-  top: 660px;
-  right: -20px; }
-
-.display-cell::after {
-  position: absolute;
-  display: block;
-  content: "";
-  height: 0;
-  width: 0;
-  border: solid 20px transparent;
-  border-bottom: solid 20px #6a5bcd;
-  border-top-width: 0px;
-  background: none;
-  left: 0px;
-  top: 80px; }
-
 #outer-border {
   display: none;
-  position: absolute;
-  transform: translate(20px, -620px);
+  position: relative;
+  left: 20px;
+  top: -620px;
   height: 600px;
   background: linear-gradient(-40.4deg, #473d8a 50%, #6a5bcd 50%);
   width: 700px;
@@ -148,26 +169,14 @@ input[type=button] {
   border-radius: 50%;
   margin: 5px 0 0 5px;
   border: 1px solid black;
-<<<<<<< HEAD
-  box-shadow: inset 0 0 10px 0 black; }
-=======
   box-shadow: inset 0 0 7px 0 black;
   margin-bottom: 40px; }
->>>>>>> f3653c325afe231a7a15adfc316ccbb8ad18f2d7
 
 .red-turn:not(.red, .yellow):hover {
   background: red !important; }
 
 .yellow-turn:not(.red, .yellow):hover {
   background: yellow !important; }
-
-.turn {
-  font-size: 4rem;
-  margin-top: 30px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100px; }
 
 .red, .yellow {
   display: inline-grid;
@@ -177,11 +186,7 @@ input[type=button] {
   border: 1px solid black;
   margin: 5px 0 0 5px;
   z-index: 100;
-<<<<<<< HEAD
-  box-shadow: inset 0 0 10px 0 black; }
-=======
   box-shadow: inset 0 0 7px 0 black; }
->>>>>>> f3653c325afe231a7a15adfc316ccbb8ad18f2d7
 
 .red {
   background: red;

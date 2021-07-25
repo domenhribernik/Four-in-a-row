@@ -15,36 +15,11 @@
 .display-cell:nth-child(n+8)
   background: $outer-border-color3
 
-.display-cell::before
-  position: absolute
-  display: block
-  content: ""
-  height: 0
-  width: 0
-  border: solid $outer-border-width transparent
-  border-left: solid $outer-border-width $outer-border-color1
-  border-right-width: 0px
-  background: none
-  top: $rows*$height - $outer-border-width*2
-  right: -$outer-border-width
-
-.display-cell::after 
-  position: absolute
-  display: block
-  content: ""
-  height: 0
-  width: 0
-  border: solid $outer-border-width transparent
-  border-bottom: solid $outer-border-width $outer-border-color2
-  border-top-width: 0px
-  background: none
-  left: 0px
-  top: $height - $outer-border-width
-
 #outer-border
   display: none
-  position: absolute
-  transform: translate($outer-border-width, -($rows - 1)*$height - $outer-border-width)
+  position: relative
+  left: $outer-border-width
+  top: -($rows - 1)*$height -$outer-border-width
   height: ($rows - 1)*$height
   background: linear-gradient(-40.4deg, $outer-border-color1 50%, $outer-border-color2 50%)//$outer-border-color
   width: $cols*$width
@@ -93,27 +68,11 @@
   border-radius: 50%
   margin: ($size-reduction / 2) 0 0 ($size-reduction / 2)
   border: $basic-border
-<<<<<<< HEAD
-  box-shadow: $inner-shadow-coin
-  
-.first-red:hover
-  background: red
-  
-=======
   box-shadow: $inside-coin-shadow
   margin-bottom: $outer-border-width*2
->>>>>>> f3653c325afe231a7a15adfc316ccbb8ad18f2d7
 
 .red-turn:not(.red, .yellow):hover
   background: red!important
   
 .yellow-turn:not(.red, .yellow):hover
   background: yellow!important
-
-.turn 
-  font-size: 4rem
-  margin-top: 30px
-  position: relative
-  left: 50%
-  transform: translateX(-50%)
-  height: 100px

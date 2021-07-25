@@ -10,30 +10,29 @@
 <body>
   <div class="container">
     <div class="left">
-      <h1 class="title">F<span class="yellow-text">o</span>ur in a r<span class="red-text">o</span>w</h1>
-      <table>
-        <tr>
-          <td>Player 1</td>
-          <td><input type="text" value="player1" id="player1" ></td>
-          <td><div class="coin yellow shaded-coin"></div></td>
-        </tr>
-        <tr>
-          <td>Player 2</td>
-          <td><input  type="text" value="player2" id="player2"></td>
-          <td><div class="coin red shaded-coin"></div></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><input type="button" value="New Game" onclick="showGame()"></td>
-          <td></td>
-        </tr>
-      </table>
-      <div class="turn">
-        <div id="turn-text">Next: </div>
-        <div id="player"></div>
-      </div>
-      <div class="slider">
-        <input type="range" min="1" max="360" value="248" class="slider" id="myRange" onchange="setColor(this)">
+      <div class="left-align">
+        <h1 class="title">F<span class="yellow-text">o</span>ur in a r<span class="red-text">o</span>w</h1>
+        <div class="p1">
+          <div>Player 1:</div>
+          <input type="text" value="player1" id="player1" >
+          <div class="coin yellow shaded-coin"></div>
+        </div>
+        <div class="p2">
+          <div>Player 2:</div>
+          <input  type="text" value="player2" id="player2">
+          <div class="coin red shaded-coin"></div>
+        </div>
+        <div class="turn">
+          <div id="turn-text">Next: </div>
+          <div id="player"></div>
+        </div>
+        <br>
+        <input type="button" value="New Game" onclick="showGame()">
+        <br>
+          <div class="slider-container">
+            <div>Background: </div>
+            <div class="slider"><input type="range" min="1" max="360" value="248" class="slider" id="myRange" onchange="setColor(this)"></div>
+          </div>
       </div>
     </div>
     <div class="right">

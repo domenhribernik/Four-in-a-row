@@ -9,34 +9,18 @@ body {
 div {
   display: inline-block; }
 
-table {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%); }
-
-td, tr {
-  vertical-align: middle;
-  padding: 10px; }
-
 input {
   border: none;
+  background: none;
   border: 1px solid black;
   outline: none;
-  border-radius: 10px;
-  padding: 5px;
+  border-radius: 15px;
+  padding: 5px 10px;
   font-size: 2rem;
   width: 200px; }
 
-input[type=button] {
-  padding: 5px 15px; }
-
-.container {
-  display: grid;
-  grid-template-columns: 50% auto; }
-
 /* LAYOUTS */
 .title {
-  text-align: center;
   color: white;
   font-weight: bold;
   font-size: 5rem;
@@ -52,7 +36,11 @@ input[type=button] {
   color: red; }
 
 .slider {
-  display: block; }
+  display: inline-block; }
+
+.container {
+  display: grid;
+  grid-template-columns: 50% auto; }
 
 .right, .left {
   max-height: 700px;
@@ -88,16 +76,43 @@ input[type=button] {
   left: 0px;
   top: 80px; }
 
-.left {
-  border: 1px solid black; }
-
-.turn {
-  font-size: 4rem;
-  margin-top: 30px;
+.left-align {
   position: relative;
   left: 50%;
-  transform: translateX(-50%);
-  height: 100px; }
+  transform: translateX(-50%); }
+
+.p1, .p2 {
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: bold; }
+
+.p1 input, .p2 input {
+  margin: 0px 20px; }
+
+.turn {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 4rem;
+  margin: 30px 0px 50px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%); }
+
+input[type=button] {
+  height: auto;
+  width: auto;
+  font-size: 2.3rem;
+  padding: 20px 50px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%); }
+
+.slider-container {
+  margin-top: 30px; }
+
+.slider-container div {
+  display: inline-block; }
 
 /* MODULES */
 #game-display {

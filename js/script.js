@@ -9,6 +9,7 @@ var display = document.getElementById("game-display")
 var p1 = document.getElementById("player1")
 var p2 = document.getElementById("player2")
 var gameOverBool = false
+var color = 0
 
 var updateScore = () => {
   turn === 1 
@@ -24,6 +25,7 @@ var createDisplay = () => {
     for (let j = 0; j < colMax; j++) {
       let cell = document.createElement("div")
       cell.classList.add("display-cell")
+      color!=0&&i!=0?cell.style.background = `hsl( ${color}, 80%, 67%)`:null
       display.appendChild(cell)
     }
   }
@@ -45,7 +47,6 @@ var createGameArr = () => {
       turn == 1 ? cell.classList.add("yellow-turn") : turn == 2 ? cell.classList.add("red-turn") : null
       cell.setAttribute("row", i)
       cell.setAttribute("col", j)
-      
       game.appendChild(cell)
       gameArr[i].push(0)
       
@@ -234,8 +235,9 @@ var digCheck = () => {
 }
 
 var setColor = e => {
-  document.getElementById("outer-border").style.background = `linear-gradient(-40.4deg, hsl( ${e.value}, 39%, 39%) 50%, hsl( ${e.value}, 53%, 58%) 50%)`
-  document.querySelectorAll("#game-display > div.display-cell:nth-child(n+8)").forEach(el => el.style.background = `hsl( ${e.value}, 80%, 67%)`)
-  document.querySelector(".top-left-edge").style.borderBottom = `20px solid hsl( ${e.value}, 53%, 58%)`
-  document.querySelector(".bottom-right-edge").style.borderLeft = `20px solid hsl( ${e.value}, 39%, 39%)`
+  color = e.value
+  document.getElementById("outer-border").style.background = `linear-gradient(-40.4deg, hsl( ${color}, 39%, 39%) 50%, hsl( ${color}, 53%, 58%) 50%)`
+  document.querySelectorAll("#game-display > div.display-cell:nth-child(n+8)").forEach(el => el.style.background = `hsl( ${color}, 80%, 67%)`)
+  document.querySelector(".top-left-edge").style.borderBottom = `20px solid hsl( ${color}, 53%, 58%)`
+  document.querySelector(".bottom-right-edge").style.borderLeft = `20px solid hsl( ${color}, 39%, 39%)`
 }

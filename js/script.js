@@ -2,12 +2,14 @@ var turn = 0
 var colMax = 7
 var rowMax = 6 + 1
 var gameArr = []
-var player = document.getElementById("player")
+const player = document.getElementById("player")
 console.log(player)
 var game = document.getElementById("game")
-var display = document.getElementById("game-display")
-var p1 = document.getElementById("player1")
-var p2 = document.getElementById("player2")
+const display = document.getElementById("game-display")
+const p1 = document.getElementById("player1")
+const p2 = document.getElementById("player2")
+const turnText = document.getElementById("turn-text")
+const gameBtn = document.getElementById("game-btn")
 var gameOverBool = false
 var color = 0
 
@@ -83,7 +85,10 @@ var showGame = () => {
   if (turn !== 0) {
     restartGame()
   }
-  document.getElementById("game-btn").value="Restart"
+  gameBtn.value="Restart"
+  turnText.innerText="'s turn"
+  p1.value==""?p1.value="Player 1":null
+  p2.value==""?p2.value="Player 2":null
   rndPlayer()
   createDisplay()
   createGameArr()
@@ -99,10 +104,8 @@ var placeToken = (e) => {
   console.log(e.target);
   let col = parseInt(block.attributes.col.value)
   let row = parseInt(block.attributes.row.value)
-  if (row==0&&gameArr[1][col]!==0) {
-    
-  }
-  else if (gameArr[row][col] == 0) { //ERROR - whole block has event listener
+  if (row==0&&gameArr[1][col]!==0) {}
+  else if (gameArr[row][col] == 0) {
     turn === 1 
     ? (
       block.classList.add("yellow"),
@@ -140,75 +143,93 @@ var placeToken = (e) => {
 }
 
 var gameOver = p => {
-  alert(`${p} is the winner!`)
-  document.getElementById("game-btn").value="New Game"
-  document.getElementById("turn-text").innerText="Game over"
-  document.getElementById("player").style.display="none"
+  gameBtn.value="New Game"
+  turnText.innerText=`${p} wins!`
+  player.style.display="none"
   game.removeEventListener("click", placeToken)
   gameOverBool = true
   updateGame()
 }
+//make a glow effect for wining circles
+//make it responsive
+//make the text glow on turn
 
 var horCheck = () => {
   let horY = 0
   let horR = 0
+  var winArrY = []
+  var winArrR = []
   for (let i = 0; i < rowMax; i++) {
     for (let j = 0; j < colMax; j++) {
       if (gameArr[i][j] === 1) {
         horY += 1
         horR = 0
+        winArrY.push([i, j])
+        winArrR = []
       }
       else if (gameArr[i][j] === 2) {
         horR += 1
         horY = 0
+        winArrY = []
+        winArrR.push([i, j])
       }
       else {
         horR = 0
         horY = 0
+        winArrY = []
+        winArrR = []
       }
       if (horY === 4) {
         gameOver(p1.value)
+        console.log(winArrY);
         break
       }
       else if (horR === 4) {
         gameOver(p2.value)
+        console.log(winArrR);
         break
       }
     }
-    horY = 0
-    horR = 0
   }
 }
 
 var verCheck = () => {
   let verY
   let verR
+  var winArrY = []
+  var winArrR = []
   for (let j = 0; j < colMax; j++) {
     for (let i = 0; i < rowMax; i++) {
       if (gameArr[i][j] === 1) {
         verY += 1
         verR = 0
+        winArrY.push([i, j])
+        winArrR = []
       }
       else if (gameArr[i][j] === 2) {
         verR += 1
         verY = 0
+        winArrY = []
+        winArrR.push([i, j])
       }
       else {
         verY = 0
         verR = 0
+        winArrY = []
+        winArrR = []
       }
       if (verY === 4) {
         gameOver(p1.value)
+        console.log(winArrY);
         break
       }
       else if (verR === 4) {
         gameOver(p2.value)
+        console.log(winArrR);
         break
       }
     }
     console.log(verY + " " +verR);
-    verY = 0
-    verR = 0
   }
 }
 

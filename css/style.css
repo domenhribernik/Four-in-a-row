@@ -129,6 +129,9 @@ input[type="range"] {
   left: 50%;
   transform: translateX(-50%); }
 
+#turn-text {
+  transform: translateX(-15px); }
+
 input[type=button] {
   height: auto;
   width: 100%;
@@ -243,5 +246,8 @@ input[type=button] {
 
 .shaded-coin {
   box-shadow: inset 0 0 7px 0 black; }
+
+.glow-coin {
+  box-shadow: 0 0 15px 5px #0ff; }
 
 /*# sourceMappingURL=style.css.map */

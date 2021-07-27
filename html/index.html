@@ -14,17 +14,17 @@
         <h1 class="title">F<span class="yellow-text">o</span>ur in a r<span class="red-text">o</span>w</h1>
         <div class="p1">
           <div>Player 1:</div>
-          <input type="text" value="player1" id="player1" >
-          <div class="coin yellow shaded-coin"></div>
+          <input type="text" value="" placeholder="Player 1" id="player1" >
+          <div class="coin yellow shaded-coin p1-coin"></div>
         </div>
         <div class="p2">
           <div>Player 2:</div>
-          <input  type="text" value="player2" id="player2">
-          <div class="coin red shaded-coin"></div>
+          <input  type="text" value="" placeholder="Player 2" id="player2">
+          <div class="coin red shaded-coin p2-coin"></div>
         </div>
         <div class="turn">
-          <div id="turn-text">Next: </div>
-          <div id="player">player1</div>
+          <div id="player"></div>
+          <div id="turn-text">Start the game</div>
         </div>
         <br>
         <input type="button" value="New Game" id="game-btn" onclick="showGame()">

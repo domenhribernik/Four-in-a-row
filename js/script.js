@@ -83,6 +83,7 @@ var showGame = () => {
   if (turn !== 0) {
     restartGame()
   }
+  document.getElementById("game-btn").value="Restart"
   rndPlayer()
   createDisplay()
   createGameArr()
@@ -95,9 +96,13 @@ var restartGame = () => {
 
 var placeToken = (e) => {
   let block = e.target
+  console.log(e.target);
   let col = parseInt(block.attributes.col.value)
   let row = parseInt(block.attributes.row.value)
-  if (gameArr[row][col] == 0) { //ERROR - whole block has event listener
+  if (row==0&&gameArr[1][col]!==0) {
+    
+  }
+  else if (gameArr[row][col] == 0) { //ERROR - whole block has event listener
     turn === 1 
     ? (
       block.classList.add("yellow"),
@@ -136,6 +141,9 @@ var placeToken = (e) => {
 
 var gameOver = p => {
   alert(`${p} is the winner!`)
+  document.getElementById("game-btn").value="New Game"
+  document.getElementById("turn-text").innerText="Game over"
+  document.getElementById("player").style.display="none"
   game.removeEventListener("click", placeToken)
   gameOverBool = true
   updateGame()
@@ -159,11 +167,11 @@ var horCheck = () => {
         horY = 0
       }
       if (horY === 4) {
-        gameOver("player1")
+        gameOver(p1.value)
         break
       }
       else if (horR === 4) {
-        gameOver("player2")
+        gameOver(p2.value)
         break
       }
     }
@@ -190,11 +198,11 @@ var verCheck = () => {
         verR = 0
       }
       if (verY === 4) {
-        gameOver("player1")
+        gameOver(p1.value)
         break
       }
       else if (verR === 4) {
-        gameOver("player2")
+        gameOver(p2.value)
         break
       }
     }
@@ -210,21 +218,21 @@ var digCheck = () => {
     for (let j = 0; j < colMax; j++) {
       if (i >= 3 && j >= 3) {
         if (gameArr[i][j] === 1 && gameArr[i-1][j-1] === 1 && gameArr[i-2][j-2] === 1 && gameArr[i-3][j-3] === 1) {
-          gameOver("player1")
+          gameOver(p1.value)
           break
         }
         else if (gameArr[i][j] === 2 && gameArr[i-1][j-1] === 2 && gameArr[i-2][j-2] === 2 && gameArr[i-3][j-3] === 2) {
-          gameOver("player2")
+          gameOver(p2.value)
           break
         }
       }
       if (i >= 3 && j <= colMax-2) {
         if (gameArr[i][j] === 1 && gameArr[i-1][j+1] === 1 && gameArr[i-2][j+2] === 1 && gameArr[i-3][j+3] === 1) {
-          gameOver("player1")
+          gameOver(p1.value)
           break
         }
         else if (gameArr[i][j] === 2 && gameArr[i-1][j+1] === 2 && gameArr[i-2][j+2] === 2 && gameArr[i-3][j+3] === 2) {
-          gameOver("player2")
+          gameOver(p2.value)
           break
         }
       }

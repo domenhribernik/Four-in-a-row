@@ -1,10 +1,20 @@
 .container 
   display: grid
   grid-template-columns: 50% auto
+  position: relative
+  height: 80vh
+  align-items: center
+  margin: 0px 300px
 
 .right, .left
   max-height: $height*$rows
   padding-top: 100px
+  height: 800px
+
+// .left
+//   margin-left: 300px
+// .right
+//   margin-right: 300px
 
 #align-game
   position: relative
@@ -47,9 +57,13 @@
   align-items: center
   font-size: 3rem
   font-weight: bold
+  padding-left: 30px
+  padding-top: 10px
+  text-transform: uppercase
 
 .p1 input, .p2 input
   margin: 0px 20px
+  padding: 15px
 
 .turn 
   display: inline-block
@@ -62,7 +76,7 @@
 
 input[type=button] 
   height: auto
-  width: auto
+  width: 100%
   font-size: 2.3rem
   padding: 20px 50px
   position: relative

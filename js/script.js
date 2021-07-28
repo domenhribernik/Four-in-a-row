@@ -8,15 +8,19 @@ var game = document.getElementById("game")
 const display = document.getElementById("game-display")
 const p1 = document.getElementById("player1")
 const p2 = document.getElementById("player2")
+const p1Coin = document.getElementById("p1-coin")
+const p2Coin = document.getElementById("p2-coin")
 const turnText = document.getElementById("turn-text")
 const gameBtn = document.getElementById("game-btn")
 var gameOverBool = false
 var color = 0
 
 var updateScore = () => {
-  turn === 1 
-  ? player.innerText = p1.value
-  : player.innerText = p2.value
+  turn==1&&gameBtn.value!=="New Game"?(player.innerText=p1.value,p1Coin.classList.add("glow-coin"), p2Coin.classList.remove("glow-coin")):
+  turn==2&&gameBtn.value!=="New Game"?(player.innerText=p2.value, p2Coin.classList.add("glow-coin"), p1Coin.classList.remove("glow-coin")): 
+  (p2Coin.classList.remove("glow-coin"), p1Coin.classList.remove("glow-coin"))
+  
+
 }
 var rndPlayer = () => {
   turn = Math.round(Math.random()) + 1
@@ -77,7 +81,7 @@ var updateGame = () => {
       cell.setAttribute("row", i)
       cell.setAttribute("col", j)
       game.appendChild(cell)
-      gameArr[i].push(6)
+      gameArr[i].push(0)
     }
   }
 }
@@ -142,7 +146,7 @@ var placeToken = (e) => {
   }
 }
 
-var gameOver = p => {
+var gameOver = (p, winArr) => {
   gameBtn.value="New Game"
   turnText.innerText=`${p} wins!`
   player.style.display="none"
@@ -152,7 +156,6 @@ var gameOver = p => {
 }
 //make a glow effect for wining circles
 //make it responsive
-//make the text glow on turn
 
 var horCheck = () => {
   let horY = 0
@@ -180,12 +183,12 @@ var horCheck = () => {
         winArrR = []
       }
       if (horY === 4) {
-        gameOver(p1.value)
+        gameOver(p1.value, winArrY)
         console.log(winArrY);
         break
       }
       else if (horR === 4) {
-        gameOver(p2.value)
+        gameOver(p2.value, winArrR)
         console.log(winArrR);
         break
       }
@@ -219,12 +222,12 @@ var verCheck = () => {
         winArrR = []
       }
       if (verY === 4) {
-        gameOver(p1.value)
+        gameOver(p1.value, winArrY)
         console.log(winArrY);
         break
       }
       else if (verR === 4) {
-        gameOver(p2.value)
+        gameOver(p2.value, winArrR)
         console.log(winArrR);
         break
       }
@@ -235,25 +238,36 @@ var verCheck = () => {
 
 
 var digCheck = () => {
+  var winArrY = []
+  var winArrR = []
   for (let i = 0; i < rowMax; i++) {
     for (let j = 0; j < colMax; j++) {
       if (i >= 3 && j >= 3) {
         if (gameArr[i][j] === 1 && gameArr[i-1][j-1] === 1 && gameArr[i-2][j-2] === 1 && gameArr[i-3][j-3] === 1) {
-          gameOver(p1.value)
+          winArrY.push([i, j], [i-1, j-1], [i-2, j-2], [i-3, j-3])
+          console.log(winArrY);
+          gameOver(p1.value, winArrY)
           break
         }
         else if (gameArr[i][j] === 2 && gameArr[i-1][j-1] === 2 && gameArr[i-2][j-2] === 2 && gameArr[i-3][j-3] === 2) {
-          gameOver(p2.value)
+          winArrR.push([i, j], [i-1, j-1], [i-2, j-2], [i-3, j-3])
+          console.log(winArrR);
+          gameOver(p2.value, winArrR)
           break
         }
       }
       if (i >= 3 && j <= colMax-2) {
         if (gameArr[i][j] === 1 && gameArr[i-1][j+1] === 1 && gameArr[i-2][j+2] === 1 && gameArr[i-3][j+3] === 1) {
-          gameOver(p1.value)
+          winArrY.push([i, j], [i-1, j+1], [i-2, j+2], [i-3, j+3])
+          console.log(winArrY);
+          gameOver(p1.value, winArrY)
           break
         }
         else if (gameArr[i][j] === 2 && gameArr[i-1][j+1] === 2 && gameArr[i-2][j+2] === 2 && gameArr[i-3][j+3] === 2) {
-          gameOver(p2.value)
+          winArrR.push([i, j], [i-1, j+1], [i-2, j+2], [i-3, j+3])
+          console.log(winArrR);
+          gameOver(p2.value, winArrR)
+          
           break
         }
       }

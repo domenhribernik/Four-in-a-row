@@ -105,7 +105,6 @@ var restartGame = () => {
 
 var placeToken = (e) => {
   let block = e.target
-  console.log(e.target);
   let col = parseInt(block.attributes.col.value)
   let row = parseInt(block.attributes.row.value)
   if (row==0&&gameArr[1][col]!==0) {}
@@ -132,7 +131,6 @@ var placeToken = (e) => {
           row += 1;
           gameArr[row][col] = turn === 1 ? 2 : 1
           updateGame()
-          console.log(row);
         }
         else if (gameArr[row+1][col] !== 0) {
           clearInterval(i1)
@@ -150,12 +148,17 @@ var gameOver = (p, winArr) => {
   gameBtn.value="New Game"
   turnText.innerText=`${p} wins!`
   player.style.display="none"
+  winArr.forEach(e => document.getElementById("game").childNodes[e[0]*7 + e[1]].classList.add("glow-coin2"))
   game.removeEventListener("click", placeToken)
   gameOverBool = true
-  updateGame()
+  game.childNodes.forEach(e => {
+    e.classList.remove("yellow-turn")
+    e.classList.remove("red-turn")
+  })
 }
-//make a glow effect for wining circles
-//make it responsive
+//fix border error
+//draw fix?
+//glow1 or glow2
 
 var horCheck = () => {
   let horY = 0
@@ -184,12 +187,10 @@ var horCheck = () => {
       }
       if (horY === 4) {
         gameOver(p1.value, winArrY)
-        console.log(winArrY);
         break
       }
       else if (horR === 4) {
         gameOver(p2.value, winArrR)
-        console.log(winArrR);
         break
       }
     }
@@ -223,16 +224,13 @@ var verCheck = () => {
       }
       if (verY === 4) {
         gameOver(p1.value, winArrY)
-        console.log(winArrY);
         break
       }
       else if (verR === 4) {
         gameOver(p2.value, winArrR)
-        console.log(winArrR);
         break
       }
     }
-    console.log(verY + " " +verR);
   }
 }
 
@@ -245,13 +243,11 @@ var digCheck = () => {
       if (i >= 3 && j >= 3) {
         if (gameArr[i][j] === 1 && gameArr[i-1][j-1] === 1 && gameArr[i-2][j-2] === 1 && gameArr[i-3][j-3] === 1) {
           winArrY.push([i, j], [i-1, j-1], [i-2, j-2], [i-3, j-3])
-          console.log(winArrY);
           gameOver(p1.value, winArrY)
           break
         }
         else if (gameArr[i][j] === 2 && gameArr[i-1][j-1] === 2 && gameArr[i-2][j-2] === 2 && gameArr[i-3][j-3] === 2) {
           winArrR.push([i, j], [i-1, j-1], [i-2, j-2], [i-3, j-3])
-          console.log(winArrR);
           gameOver(p2.value, winArrR)
           break
         }
@@ -259,15 +255,12 @@ var digCheck = () => {
       if (i >= 3 && j <= colMax-2) {
         if (gameArr[i][j] === 1 && gameArr[i-1][j+1] === 1 && gameArr[i-2][j+2] === 1 && gameArr[i-3][j+3] === 1) {
           winArrY.push([i, j], [i-1, j+1], [i-2, j+2], [i-3, j+3])
-          console.log(winArrY);
           gameOver(p1.value, winArrY)
           break
         }
         else if (gameArr[i][j] === 2 && gameArr[i-1][j+1] === 2 && gameArr[i-2][j+2] === 2 && gameArr[i-3][j+3] === 2) {
           winArrR.push([i, j], [i-1, j+1], [i-2, j+2], [i-3, j+3])
-          console.log(winArrR);
           gameOver(p2.value, winArrR)
-          
           break
         }
       }

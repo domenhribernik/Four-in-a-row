@@ -154,6 +154,7 @@ var gameOver = (p, winArr, draw) => {
   player.style.display="none"
   document.getElementById("game").childNodes.forEach(e => e.classList.add("dark-coin"))
   winArr.forEach(e => document.getElementById("game").childNodes[e[0]*7 + e[1]].classList.remove("dark-coin"))
+  winArr.forEach(e => document.getElementById("game").childNodes[e[0]*7 + e[1]].classList.add("glow-coin"))
   game.removeEventListener("click", placeToken)
   gameOverBool = true
   game.childNodes.forEach(e => {

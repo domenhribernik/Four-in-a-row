@@ -161,10 +161,7 @@ var gameOver = (p, winArr, draw) => {
     e.classList.remove("red-turn")
   })
 }
-//draw fix?
-
 //bw or glow??
-
 var horCheck = () => {
   let horY = 0
   let horR = 0

@@ -30,6 +30,13 @@ input {
   margin-top: 0px;
   user-select: none; }
 
+.creator-text {
+  position: relative;
+  top: -50px;
+  left: 8px;
+  font-size: 1.8rem;
+  line-height: 0px; }
+
 .yellow-text {
   color: yellow; }
 
